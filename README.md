@@ -199,6 +199,25 @@ for each name listed at the top of `tools/digest-runner/run.mjs`.
 GitHub never shows a secret back to you after you save it. Keep your own copy
 somewhere safe, because the only way to recover one is to make a new one.
 
+**If a push is refused because of the workflow file.** You may see something
+like `refusing to allow an OAuth App to create or update workflow`. It reads
+like a permissions problem with your account, and it is not. Anything that
+pushes a change to `.github/workflows/` needs the **workflow** scope, and the
+token you are signed in with does not have it yet.
+
+If you used "Use this template", GitHub put the workflow there for you and you
+will only hit this the first time you edit it. If you started from a zip, you
+will hit it on your very first push.
+
+The fix, using the GitHub CLI:
+
+```
+gh auth refresh -h github.com -s workflow
+```
+
+Then push again. In a browser, a personal access token needs **workflow**
+ticked alongside **repo**.
+
 > **Check:** the names in the list match the names in
 > `.github/workflows/sunday-digest.yml` exactly.
 
