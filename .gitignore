@@ -1,0 +1,13 @@
+.DS_Store
+node_modules/
+
+# Secrets live in GitHub Actions secrets. A local .env is for testing only and
+# must never be committed — the runner reads real calendars and a real mailbox.
+.env
+.env.*
+!.env.example
+
+# Eval output: regenerated on demand, sometimes large. The cases that produce
+# it are committed; the runs are not.
+outputs/eval/
+outputs/eval-cases/

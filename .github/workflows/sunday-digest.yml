@@ -1,0 +1,60 @@
+name: Sunday family digest
+on:
+  schedule:
+    # GitHub cron is UTC. 00:47 UTC = 11:47am AEDT / 10:47am AEST — late Sunday morning year-round.
+    - cron: "47 0 * * 0"
+  workflow_dispatch: {}   # manual "Run workflow" button for testing
+
+permissions:
+  contents: write         # lets the run commit runs/ files back
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "20" }
+      - name: Install runner deps
+        working-directory: tools/digest-runner
+        run: npm install --no-audit --no-fund
+      - name: Run digest
+        working-directory: tools/digest-runner
+        env:
+          FAMILY_ICS_URL: ${{ secrets.FAMILY_ICS_URL }}
+          SCHOOL_ICS_URL_FILTERED: ${{ secrets.SCHOOL_ICS_URL_FILTERED }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          DIGEST_RECIPIENTS: ${{ secrets.DIGEST_RECIPIENTS }}
+          TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
+          TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
+          TWILIO_FROM_NUMBER: ${{ secrets.TWILIO_FROM_NUMBER }}
+          SMS_RECIPIENTS: ${{ secrets.SMS_RECIPIENTS }}
+        run: node run.mjs
+      - name: Commit run artifacts
+        run: |
+          git config user.name "digest-bot"
+          git config user.email "digest-bot@users.noreply.github.com"
+          git add stages/01_weekly-digest/runs/
+          git commit -m "digest run $(date -u +%F)" || echo "nothing to commit"
+          git push
+
+      # A silent failure is the worst outcome: no digest AND nobody knows the
+      # calendar was never read. Say so on the same channel the digest uses.
+      - name: Text the owner that the run failed
+        if: failure()
+        env:
+          TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
+          TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
+          TWILIO_FROM_NUMBER: ${{ secrets.TWILIO_FROM_NUMBER }}
+          SMS_RECIPIENTS: ${{ secrets.SMS_RECIPIENTS }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          TO=$(echo "$SMS_RECIPIENTS" | cut -d, -f1 | tr -d ' ')
+          curl -sS -o /dev/null -w "notify: %{http_code}\n" -X POST \
+            "https://api.twilio.com/2010-04-01/Accounts/$TWILIO_ACCOUNT_SID/Messages.json" \
+            -u "$TWILIO_ACCOUNT_SID:$TWILIO_AUTH_TOKEN" \
+            --data-urlencode "To=$TO" \
+            --data-urlencode "From=$TWILIO_FROM_NUMBER" \
+            --data-urlencode "Body=The Sunday digest run failed — no digest went out this week. Log: $RUN_URL"

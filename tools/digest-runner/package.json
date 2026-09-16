@@ -1,0 +1,26 @@
+{
+  "name": "digest-runner",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "digest": "node run.mjs",
+    "gather:test": "TZ=UTC DRY_RUN=1 FAMILY_ICS_URL=fixtures/sample.ics SCHOOL_ICS_URL_FILTERED=fixtures/sample.ics node run.mjs",
+    "gather:live": "TZ=UTC DRY_RUN=1 node --env-file-if-exists=.env run.mjs",
+    "preview": "TZ=UTC PREVIEW=1 node --env-file-if-exists=.env run.mjs",
+    "digest:local": "node --env-file-if-exists=.env run.mjs",
+    "verify:last": "node verify-last.mjs",
+    "eval": "node --env-file-if-exists=.env eval/run.mjs",
+    "eval:cases": "node eval/materialise.mjs"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.125.0",
+    "imapflow": "^1.0.164",
+    "mailparser": "^3.7.1",
+    "node-ical": "^0.18.0",
+    "nodemailer": "^6.9.14",
+    "rrule": "^2.8.1"
+  },
+  "engines": {
+    "node": ">=20.12"
+  }
+}
