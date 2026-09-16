@@ -296,6 +296,17 @@ chat window and the chat forgets.
 | `tools/calendar-filter/` | The school calendar filter, deployed separately |
 | `outputs/` | Previews and dry runs. Nothing reads from here |
 
+## Licence
+
+MIT. See `LICENSE`. Take it, change it, build something else out of it, no
+permission needed. It comes with no warranty, which matters more than usual
+here: this thing sends messages to your family about your children's week.
+Read the first one before anybody else does, and keep reading them.
+
+Built in public at [@deebugging](https://instagram.com/deebugging).
+
+---
+
 `CLAUDE.md` in the root is the map, and it routes you by what just happened.
 Every folder has a `CONTEXT.md` explaining itself.
 
