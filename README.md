@@ -77,9 +77,25 @@ in the email, which costs nothing either way.
 
 ## What you need before you start
 
-- **Node 20.12 or newer.** Check with `node --version`. If it is older, the
-  commands below fail with `bad option: --env-file-if-exists`, which looks
-  alarming and only means the version is behind.
+- **Node 20.12 or newer.** Node is the free thing that runs the program on your
+  computer. Install it once and never think about it again.
+
+  Open a terminal. On a Mac: Command and Space together, type `Terminal`,
+  Enter. On Windows: Start, type `PowerShell`, Enter. Then type:
+
+  ```
+  node --version
+  ```
+
+  If it prints `v20.12` or higher, you are done. If it prints a lower number,
+  or says `command not found`, go to nodejs.org, press the big green **LTS**
+  button, open the file it downloads and click through the installer taking
+  every default. Then **close the terminal and open a new one**, because an old
+  window keeps looking in the old place, and run `node --version` again.
+
+  If a command later fails with `bad option: --env-file-if-exists`, this is the
+  cause. It reads like something is badly broken and it only means Node is
+  older than 20.12.
 - A **GitHub** account. Free.
 - An **Anthropic API key**, from console.anthropic.com. Pay as you go, and the
   monthly spend is above.
