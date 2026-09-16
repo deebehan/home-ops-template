@@ -303,7 +303,7 @@ permission needed. It comes with no warranty, which matters more than usual
 here: this thing sends messages to your family about your children's week.
 Read the first one before anybody else does, and keep reading them.
 
-Built in public at [@deebugging](https://instagram.com/deebugging).
+Built in public at [@deebugging.life](https://www.instagram.com/deebugging.life/).
 
 ---
 
