@@ -53,7 +53,7 @@ costs nothing to scroll.
 | 6 | The week at a glance | Monday to Friday, side by side |
 | 7 | The weekend | given its own room |
 | 8 | The desk | one block per child |
-| 9 | Weather | only if `sources.md` names a forecast |
+| 9 | Weather | on if `sources.md` names a forecast, off if it does not. Never invented — see below |
 | 10 | This week's good idea | one small thing that buys back time |
 | 11 | On the horizon | the rest of this month, a glimpse of next |
 | 12 | Footer | what was read, what could not be, and the sign-off |
@@ -101,6 +101,28 @@ Holidays, staff days and public holidays inside the next two weeks are phrased
 as care impact: kids home, who is on.
 
 ---
+
+### Weather — on or off, never invented
+
+Worth having, and worth being strict about. The strip is what turns "futsal
+5:00pm" into "hat and a full water bottle", which is the difference between
+knowing the week and being ready for it. It is also the easiest block here to
+fabricate, because a plausible forecast is easy to write and nobody checks it
+until they are standing in the rain.
+
+Two allowed states, and no third:
+
+- **`sources.md` names a forecast source** — look it up, show the strip, and
+  finish with one "what to bring" line that turns the numbers into actions.
+- **It does not** — leave the whole block out. No strip, no "what to bring", no
+  mention of the weather anywhere on the page.
+
+Never estimate from the season, never reuse last week's, never soften a guess
+with "probably". A forecast nobody looked up is an invented fact, and it is the
+one invented fact people act on.
+
+In the by-hand version the source is the app's own web search, named in
+`sources.md` like anything else.
 
 ## The Verify tag
 

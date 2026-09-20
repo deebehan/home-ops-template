@@ -69,6 +69,23 @@ at the bottom of this file before you send that link anywhere.
 
 ---
 
+## The weather is worth turning on
+
+The strip across the bottom of the samples is the quietly useful part. Not the
+numbers — the line underneath them, which turns the numbers into actions: hat
+and a full water bottle Monday, jumper back in the bag Tuesday, a warm layer
+for the 8:00pm pickup.
+
+It is **off unless you ask for it**, because a forecast nobody looked up is an
+invented fact, and it is the one invented fact people act on. The setup
+interview asks you outright whether it should look up your local forecast, and
+which town. Say yes and it goes into `_shared/sources.md` as a named source like
+any other. Say no and the page leaves weather out completely rather than
+guessing.
+
+In the by-hand version the lookup is your app's own web search. Nothing extra to
+connect, and no key to pay for.
+
 ## The tag that makes it worth having
 
 Every sample has small red **Verify** tags on it. That is the most useful thing
