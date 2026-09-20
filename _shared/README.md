@@ -24,6 +24,16 @@ You do not need to finish them to start. A half-filled `rules.md` with three lin
 
 ---
 
+## The sixth, only if you want the page
+
+There is one more file here, `rundown-template.md`, and it is optional. It describes the **Weekly Rundown**: the same week as a page instead of a message, laid out so a clash is visible before you have read a sentence. `guides/the-weekly-rundown.md` explains it and links four sample families you can click through.
+
+It is the one document you do not have to fill in. The other five describe your household, so nobody else's will do. That one describes a layout, and a layout is the same for everyone.
+
+Do it last. The page is the same gather wearing a better outfit — if the message is wrong, the page is wrong in colour and takes longer to read.
+
+---
+
 ## The one rule
 
 **Every correction becomes a line in one of these files. Never a fix to that week's message.**
@@ -56,9 +66,11 @@ That fix goes in the code, with a test that fails if it ever comes back.
 
 ## Using them
 
-**By hand:** file 6 in this folder, `6-running-the-sunday-in-claude.md`. Five documents in a project, three words on a Sunday. No code.
+**By hand:** `guides/running-by-hand.md`. Five documents in a project, three words on a Sunday. No code.
 
-**Automated:** the BUILD template takes these same five files, unchanged, and runs them on a schedule with a second AI checking the result before it sends.
+**As a page:** `guides/the-weekly-rundown.md`. The same project plus one more document, and a different trigger. Still no code.
+
+**Automated:** this repository takes these same five files, unchanged, and runs them on a schedule with a second AI checking the result before it sends. See `README.md` in the root, or `START-HERE.md` to be walked through it.
 
 The files do not change between those two. That is the point of writing them down.
 
@@ -70,4 +82,4 @@ Two things worth deciding now, because they are painful to change later.
 
 **Who is on the receiving end.** Anyone who gets the message needs to be able to act on it. People who receive it out of politeness stop reading by week three, and then you have a system that is technically working and practically ignored.
 
-**Whether it sounds like you.** It should not. See `4-voice.md`. A weekly message that convincingly impersonates you to your own family is a strange thing to have built, and you will only notice once somebody replies to it.
+**Whether it sounds like you.** It should not. See `voice.md`. A weekly message that convincingly impersonates you to your own family is a strange thing to have built, and you will only notice once somebody replies to it.
