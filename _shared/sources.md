@@ -15,6 +15,7 @@ An AI with access to your inbox will read your inbox. Not maliciously, just thor
 | [Calendar name] | the coming Monday to Sunday, plus all-day events for the next 4 weeks | [what lives on it] |
 | [School calendar name] | same | [e.g. already filtered, trust it, do not filter again] |
 | [Mailbox label or folder] | the last 7 days | only from the senders listed below |
+| [Local forecast for [your town]] | the coming week | Only if you want weather on the page. Looked up when the page is built. Delete this row and the page leaves weather out entirely |
 
 **If it is not in this table, the run does not read it.**
 
