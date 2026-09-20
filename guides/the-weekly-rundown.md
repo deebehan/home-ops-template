@@ -2,9 +2,9 @@
 
 The same five documents, the same connectors, the same Sunday. One more output.
 
-The text is what the family reads walking out the door. The email is the
-archive. The **Weekly Rundown** is a page: the whole week laid out so a clash
-is visible before you have read a sentence.
+The summary is the one you text on to whoever needs it. The **Weekly Rundown**
+is a page: the whole week laid out so a clash is visible before you have read a
+sentence.
 
 **See one before you build one:** four sample families, four different
 households, four different weeks — [click through them
@@ -55,7 +55,17 @@ Your project now has six documents and three outputs.
 changes. The system is still the Sunday Rundown; only the page has the new
 name.
 
-You will get one HTML file. Open it, or keep the link.
+You get back one self-contained HTML file — an artefact with a link of its own
+if your app makes those, otherwise a file to download. Either way it is yours:
+
+- **Print it** and stick it on the fridge, if that is your jam.
+- **Keep the tab open** and come back to it on Wednesday, when you have
+  forgotten what Thursday holds.
+- **Send the link** to the other parent, the grandparent, whoever else is
+  doing the driving.
+
+It reopens with no internet connection and nothing installed. See the caution
+at the bottom of this file before you send that link anywhere.
 
 ---
 
