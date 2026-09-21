@@ -26,9 +26,9 @@ You do not need to finish them to start. A half-filled `rules.md` with three lin
 
 ## The sixth, only if you want the page
 
-There is one more file here, `rundown-template.md`, and it is optional. It describes the **Weekly Rundown**: the same week as a page instead of a message, laid out so a clash is visible before you have read a sentence. `guides/the-weekly-rundown.md` explains it and links four sample families you can click through.
+There are two more files here, `rundown-template.md` and `rundown-skeleton.html`, and both are optional. Together they describe the **Weekly Rundown**: the same week as a page instead of a message, laid out so a clash is visible before you have read a sentence. The first says what goes on the page; the second is the page with the words taken out, so the look stays put. `guides/the-weekly-rundown.md` explains them and links four sample families you can click through.
 
-It is the one document you do not have to fill in. The other five describe your household, so nobody else's will do. That one describes a layout, and a layout is the same for everyone.
+Neither needs filling in. The other five describe your household, so nobody else's will do. These two describe a layout, and a layout is the same for everyone.
 
 Do it last. The page is the same gather wearing a better outfit — if the message is wrong, the page is wrong in colour and takes longer to read.
 
