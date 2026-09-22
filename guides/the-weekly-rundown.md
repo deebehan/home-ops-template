@@ -36,16 +36,20 @@ finding them.
 
 ## Once
 
-1. Open the same project. Do not make a new one — it already has your five
+1. Open the same project. Do not make a new one — it already has your
    documents and your connectors.
-2. Add `rundown-template.md` to the project instructions, underneath the other
-   five, with a line above it saying which file it is.
+2. Add **two files** from `_shared/` to the project's files, next to your five:
+   - `rundown-template.md` — what goes on the page, and in what order
+   - `rundown-skeleton.html` — how it looks
 
-That is the whole setup. **It is the one document you do not have to fill in:**
-the other five describe your household, this one describes a layout, and a
+That is the whole setup. **Neither needs filling in:** the other five describe
+your household, so nobody else's will do. These two describe a layout, and a
 layout is the same for everyone.
 
-Your project now has six documents and three outputs.
+The skeleton goes in the project's *files*, not its instructions — it is far
+too long for the instructions box, and it is why every page you generate comes
+out looking like the samples instead of whatever the model felt like that
+Sunday.
 
 ## Every week
 

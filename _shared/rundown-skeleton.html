@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<!--
+  rundown-skeleton.html
+  The fixed look of the Weekly Rundown page. rundown-template.md says what goes on the page; this says how it looks.
+
+  RULES FOR WHOEVER FILLS THIS IN
+  1. Copy the <style> block unchanged. Only the values between the two marked comments in :root may change.
+  2. Replace every [bracketed] slot with a fact from the gather. A slot with no fact is removed, never guessed.
+  3. Repeat a REPEAT element as many times as the week needs. Remove an OPTIONAL block when rundown-template.md says to cut it.
+  4. Add no scripts, no images, no new CSS, no new blocks. Remove these comments from the finished page.
+  5. Child pills: first child k1, second k2, third k3, fourth k4, adults "ad". Same child, same class, everywhere.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>[Family name] Weekly Rundown</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Caveat:wght@500;700&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* THE ONLY VALUES YOU MAY CHANGE. Everything below this block stays exactly as it is. */
+  --pop:#2E7D5B;        /* the family's colour: date tab, hot days */
+  --pop-ink:#fff;       /* text on top of --pop. Must stay readable */
+  --paper:#ECEEF1; --card:#fff; --ink:#1E242C; --muted:#5B6572;
+  --soft:#FBF0C2; --t1:#D5E8DD; --t2:#F6D5D5;
+  --k1:#D5E8DD; --k2:#F6D5D5; --k3:#FBF0C2; --k4:#CDE3F2;   /* one tint per child */
+  --alert:#B3261E; --alert-soft:#FADFDB; --line:rgba(0,0,0,.15);
+  /* END OF CHANGEABLE VALUES */
+  color-scheme:light; box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  --head:"Bricolage Grotesque",system-ui,sans-serif; --mast:clamp(46px,9.4vw,112px); --mast-case:none; --mast-track:-.025em; --h2:28px;
+}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0; background:var(--paper); color:var(--ink); font-family:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif; font-size:15px; line-height:1.45}
+.sheet{max-width:1120px; margin:0 auto; padding:28px 20px 40px}
+h1,h2,h3{font-family:var(--head); margin:0; line-height:1.02}
+.hand{font-family:"Caveat","Bradley Hand",cursive; font-weight:700; line-height:1.05}
+.mast{display:grid; grid-template-columns:1fr auto; gap:20px; align-items:end; border-bottom:4px solid var(--ink); padding-bottom:14px}
+.mast .family{font-family:var(--head); font-weight:700; font-size:20px}
+.mast h1{font-size:var(--mast); font-weight:800; font-stretch:75%; letter-spacing:var(--mast-track); text-transform:var(--mast-case); margin-top:2px}
+.datetab{background:var(--pop); color:var(--pop-ink); padding:12px 16px; text-align:right; font-weight:600; transform:rotate(1.5deg)}
+.datetab b{display:block; font-family:var(--head); font-size:26px; font-weight:800; line-height:1.05}
+.from{display:flex; flex-wrap:wrap; gap:6px 22px; justify-content:space-between; padding:10px 0 22px; color:var(--muted); font-size:14px}
+.from strong{color:var(--ink)}
+.greet{font-size:32px; margin:0 0 18px}
+.row{display:grid; gap:16px; margin-bottom:16px}
+.r1{grid-template-columns:minmax(0,3.2fr) minmax(0,1.25fr)}
+.r2{grid-template-columns:minmax(0,2.5fr) minmax(0,1fr)}
+.r3{display:flex; flex-wrap:wrap}
+.r3 > .block{flex:1 1 300px; min-width:0}
+.r3 > .block:first-child:nth-last-child(4), .r3 > .block:first-child:nth-last-child(4) ~ .block{flex-basis:40%}
+.r4{display:flex; flex-wrap:wrap}
+.r4 > .block{flex:1 1 300px; min-width:0}
+.r4 > .block.wxblock{flex:1.6 1 420px}
+.block{background:var(--card); border:1.5px solid var(--ink); padding:18px}
+.block > h2{font-size:var(--h2); font-weight:800; font-stretch:80%}
+.block > .sub{color:var(--muted); font-size:13.5px; margin:4px 0 14px}
+.t1{background:var(--t1)} .t2{background:var(--t2)} .tsoft{background:var(--soft)}
+.todo{list-style:none; margin:0; padding:0}
+.todo li{display:grid; grid-template-columns:22px 108px 1fr; gap:10px; padding:9px 0; border-top:1px solid var(--line); align-items:start}
+.todo li:first-child{border-top:0}
+.box{width:16px; height:16px; border:1.5px solid var(--ink); margin-top:2px}
+.who{font-weight:700; font-size:13.5px}
+.tag{display:inline-block; font-size:11.5px; font-weight:700; padding:1px 7px; border-radius:99px; border:1.5px solid var(--alert); color:var(--alert); background:var(--alert-soft); margin-left:4px; white-space:nowrap}
+.done{list-style:none; margin:0 0 14px; padding:0}
+.done li{padding:7px 0 7px 26px; position:relative; border-top:1px solid var(--line); font-size:14px}
+.done li:first-child{border-top:0}
+.done li::before{content:"✓"; position:absolute; left:2px; top:6px; font-weight:800}
+.note{font-size:25px; transform:rotate(-3deg); display:inline-block; margin-top:6px}
+.legend{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px}
+.p{display:inline-block; font-size:11.5px; font-weight:700; padding:1px 8px; border-radius:99px; border:1.5px solid var(--ink); margin-right:3px}
+.p.k1{background:var(--k1)} .p.k2{background:var(--k2)} .p.k3{background:var(--k3)} .p.k4{background:var(--k4)} .p.ad{background:var(--card)}
+.week{display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); border:1.5px solid var(--ink)}
+.day{border-left:1px solid var(--line)} .day:first-child{border-left:0}
+.day header{padding:8px 10px; border-bottom:1.5px solid var(--ink)}
+.day header b{font-family:var(--head); font-size:19px; font-weight:800; display:block; line-height:1}
+.day header span{font-size:12.5px; color:var(--muted)}
+.away{font-size:12.5px; font-weight:600; padding:5px 10px; background:var(--soft); border-bottom:1px solid var(--line); min-height:30px}
+.ev{padding:9px 10px; border-bottom:1px solid var(--line); font-size:13.5px}
+.ev:last-child{border-bottom:0}
+.ev time{display:block; font-weight:700; font-size:12.5px}
+.ev small{display:block; color:var(--muted); font-size:12.5px; margin-top:2px}
+.ev.flag{background:var(--alert-soft)}
+.weekend h3{font-size:19px; font-weight:800; margin:14px 0 6px; padding-top:12px; border-top:1.5px solid var(--ink)}
+.weekend h3:first-of-type{border-top:0; padding-top:0; margin-top:0}
+.weekend .ev{padding-left:0; padding-right:0}
+.desk h3{font-size:21px; font-weight:800; display:flex; flex-wrap:wrap; justify-content:space-between; gap:4px 10px; align-items:baseline}
+.desk h3 span{font-family:"Instrument Sans",sans-serif; font-size:13px; font-weight:600}
+.desk ul{margin:12px 0 0; padding-left:18px} .desk li{margin-bottom:7px}
+.wx{display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); border:1.5px solid var(--ink); text-align:center}
+.wx div{padding:8px 2px; border-left:1px solid var(--line); font-size:12px} .wx div:first-child{border-left:0}
+.wx b{display:block; font-family:var(--head); font-size:20px; font-weight:800; line-height:1.1}
+.wx .hot{background:var(--pop); color:var(--pop-ink)} .wx .cold{background:var(--t1)}
+.bring{margin-top:12px; font-size:14px}
+.horizon{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px 28px}
+.horizon h3{font-size:16px; font-weight:800; border-bottom:1.5px solid var(--ink); padding-bottom:4px; margin-bottom:6px}
+.horizon dl{margin:0; display:grid; grid-template-columns:minmax(4.5em,max-content) minmax(0,1fr); gap:5px 14px; font-size:14px}
+.horizon dt{font-weight:700; max-width:11em} .horizon dd{margin:0; min-width:0; overflow-wrap:anywhere}
+footer{margin-top:22px; border-top:4px solid var(--ink); padding-top:14px; display:grid; grid-template-columns:1fr auto; gap:16px; align-items:end}
+footer .sign{font-size:32px} footer p{margin:0; color:var(--muted); font-size:13px; max-width:62ch}
+@media (max-width:900px){ .r1,.r2{grid-template-columns:minmax(0,1fr)} }
+@media (max-width:720px){
+  .horizon{grid-template-columns:minmax(0,1fr)}
+  .week{grid-template-columns:minmax(0,1fr)}
+  .day{border-left:0; border-top:1.5px solid var(--ink)} .day:first-child{border-top:0}
+  .todo li{grid-template-columns:22px 1fr} .todo .who,.todo .what{grid-column:2}
+  .mast{grid-template-columns:1fr} .datetab{justify-self:start; text-align:left}
+  .wx{grid-template-columns:repeat(4,minmax(0,1fr))} .wx div{border-top:1px solid var(--line)}
+  footer{grid-template-columns:1fr}
+}
+.block,.todo li,.ev,.day,.wx div{color:var(--ink)}
+@media print{
+  body{background:#fff; font-size:12px} .sheet{max-width:none; padding:0}
+  .block,.day,.weekend{break-inside:avoid} .datetab,.note{transform:none}
+  *{-webkit-print-color-adjust:exact; print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+<main class="sheet">
+
+  <!-- 1 MASTHEAD -->
+  <div class="mast">
+    <div><div class="family">[Family name]</div><h1>Weekly Rundown</h1></div>
+    <div class="datetab">[Day the page was built]<b>[Date, e.g. 20 Sep 2026]</b>[Place]</div>
+  </div>
+
+  <!-- 2 PROVENANCE -->
+  <div class="from">
+    <span>Delivered by <strong>[Character name, from voice.md]</strong>. [One short line in the register]</span>
+    <span>For [who receives it]. Week of [Mon date] to [Sun date].</span>
+  </div>
+
+  <!-- 3 GREETING -->
+  <p class="hand greet">[Greeting, one fresh line per voice.md]</p>
+
+  <!-- 4 CLASHES AND DECISIONS + 5 ALREADY HANDLED -->
+  <div class="row r1">
+    <section class="block">
+      <h2>Clashes and decisions</h2>
+      <p class="sub">[What was checked first, then what it was crossed against]</p>
+      <ul class="todo">
+        <!-- REPEAT one li per item, ordered by what it costs to get wrong -->
+        <li><span class="box"></span><span class="who">[Owner]</span><span class="what"><b>[The decision.]</b> [The detail that settles it.] <!-- only when sources disagree or a needed fact is unpublished: --><span class="tag">Verify</span></span></li>
+      </ul>
+    </section>
+    <!-- OPTIONAL: cut this whole section if nothing qualifies. If the mail sweep did not run, say that here instead. -->
+    <section class="block t1">
+      <h2>Already handled</h2>
+      <p class="sub">Things the week doesn't need from you.</p>
+      <ul class="done">
+        <li>[Confirmed booking, receipted payment or locked appointment]</li><!-- REPEAT -->
+      </ul>
+      <span class="hand note">[Handwritten note. An observation, never a label.]</span><!-- OPTIONAL. Two or three notes on the whole page. -->
+    </section>
+  </div>
+
+  <!-- 6 THE WEEK AT A GLANCE + 7 THE WEEKEND -->
+  <div class="row r2">
+    <section class="block">
+      <h2>The week at a glance</h2>
+      <p class="sub">Top strip shows who is away from home that day.</p>
+      <div class="legend">
+        <span class="p k1">[Child one]</span><span class="p k2">[Child two]</span><span class="p ad">Adults</span>
+      </div>
+      <div class="week">
+        <!-- REPEAT exactly five: Mon to Fri -->
+        <div class="day">
+          <header><b>[Mon]</b><span>[21 Sep]</span></header>
+          <div class="away">[Who is away and where, by name. If nobody: "Everyone local"]</div>
+          <div class="ev"><time>Morning and pickup</time>[Who does the morning]. [Who does pickup].</div>
+          <!-- REPEAT one .ev per event. Every event keeps its time, exactly as written. Add class "flag" to an event carrying a Verify tag. -->
+          <div class="ev"><time>[Time as written]</time><span class="p k1">[Child]</span>[Event]<small>[Optional detail: who drives, what to bring]</small></div>
+        </div>
+      </div>
+    </section>
+    <section class="block weekend t2">
+      <h2>The weekend</h2>
+      <p class="sub">[Where each adult is, both days, by name]</p>
+      <h3>[Sat 26 Sep]</h3>
+      <div class="ev"><time>[Time]</time>[Event]<small>[Optional detail]</small></div><!-- REPEAT -->
+      <h3>[Sun 27 Sep]</h3>
+      <div class="ev"><time>[Time]</time>[Event]</div><!-- REPEAT -->
+    </section>
+  </div>
+
+  <!-- 8 THE DESK: REPEAT one section per child. The row lays itself out for one, two, three, four or more. -->
+  <div class="row r3 desk">
+    <section class="block">
+      <h3>[Child, year] <span>[School or daycare]</span></h3>
+      <ul>
+        <li><b>[What the week requires.]</b> [Detail, dates and amounts quoted exactly.]</li><!-- REPEAT -->
+      </ul>
+    </section>
+  </div>
+
+  <!-- 9 WEATHER + 10 GOOD IDEA. If weather is deleted, the good idea takes the full row on its own. -->
+  <div class="row r4">
+    <!-- OPTIONAL: include ONLY if sources.md names a forecast and it was looked up this run. Otherwise delete this whole section. Never estimate. -->
+    <section class="block wxblock">
+      <h2>Weather watch</h2>
+      <p class="sub">[Town]. High / low in °C, chance of rain underneath. [Where the forecast came from]</p>
+      <div class="wx">
+        <!-- REPEAT seven, Mon to Sun. Add class "hot" or "cold" only to the days that change what anyone packs. -->
+        <div>[Mon]<b>[High]°</b>[Low]°<br>[Rain]%</div>
+      </div>
+      <p class="bring"><b>What to bring:</b> [Turn the numbers into actions, tied to real events this week.]</p>
+    </section>
+    <section class="block tsoft">
+      <h2>This week's good idea</h2>
+      <p class="sub">[One line]</p>
+      <p style="margin:0 0 10px"><b>[One small thing that buys back time.]</b> [How.]</p>
+      <p style="margin:0"><b>Plan B:</b> [The fallback.]</p>
+    </section>
+  </div>
+
+  <!-- 11 ON THE HORIZON: its own full-width row. Four weeks. A date range is fine: write it "Mon 28 to Wed 30". -->
+  <div class="row">
+    <section class="block">
+      <h2>On the horizon</h2>
+      <p class="sub">[Term or holiday boundary inside the next four weeks, if published]</p>
+      <div class="horizon">
+        <div><h3>[Rest of this month]</h3><dl><dt>[Date]</dt><dd>[What, phrased as care impact where it is one]</dd><!-- REPEAT dt/dd --></dl></div>
+        <div><h3>[A glimpse of next month]</h3><dl><dt>[Date]</dt><dd>[What]</dd></dl></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- 12 FOOTER -->
+  <footer>
+    <p>Read for this page: [each source actually read, and when]. Could not read: [anything that failed, or "nothing"]. Anything tagged Verify is a clash the sources could not settle on their own.</p>
+    <div class="hand sign">[Sign-off, per voice.md]<br>[Character name]</div>
+  </footer>
+
+</main>
+</body>
+</html>
