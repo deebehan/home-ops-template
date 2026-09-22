@@ -4,6 +4,10 @@ A household operations workspace. One pipeline lives here: the Sunday weekly
 digest. Everything the family needs to remember for the coming week, pulled
 from calendars and school email, delivered as one text and one email.
 
+The scheduled run sends those two and nothing else. There is a third output,
+the Weekly Rundown page, and it is a by-hand thing you ask for in a project.
+See `guides/the-weekly-rundown.md`.
+
 Built on ICM: folders carry sequencing, hierarchy carries context, files carry
 state. If something needs explaining, the explanation lives in that folder's
 CONTEXT.md, not in anyone's head.
@@ -13,7 +17,8 @@ CONTEXT.md, not in anyone's head.
 | Folder | What it holds |
 |---|---|
 | `stages/` | the pipeline (one stage today: the weekly digest) |
-| `_shared/` | factory: household, sources, rules, voice, template |
+| `_shared/` | factory: household, sources, rules, voice, template. Plus two optional files for the page |
+| `guides/` | running it by hand, in a project, with no code. And the page |
 | `tools/` | factory equipment: the digest runner, the school-calendar filter |
 | `outputs/` | previews, dry runs, simulations. Never an input to anything |
 | `setup/` | one-time configuration questionnaire |
@@ -23,6 +28,8 @@ CONTEXT.md, not in anyone's head.
 | If | Go to | Then stop at |
 |---|---|---|
 | setting this up fresh | `setup/questionnaire.md`, then fill in `_shared/` | a preview that looks right |
+| running it without the code, in a project | `guides/running-by-hand.md` | "run the Sunday" gives you the week |
+| wanting the week as a page, not a message | `guides/the-weekly-rundown.md` | a page in `outputs/` |
 | running the Sunday digest | `stages/01_weekly-digest/CONTEXT.md` | you read the digest |
 | the digest got a judgment wrong | `_shared/rules.md`, encode the correction | commit |
 | the digest sounded wrong | `_shared/voice.md` | commit |

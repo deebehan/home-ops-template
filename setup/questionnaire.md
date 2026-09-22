@@ -11,3 +11,7 @@ Answers get written into _shared/ as reference files. No run re-asks them.
 5. Hard rules you already know: always flag X, never mention Y, thresholds
    for the month radar. (→ rules.md)
 6. School sender addresses seen in your inbox (for the Gmail filter). (→ sources.md)
+7. Only if you want the page version: should it look up your local forecast,
+   and for which town? Unnamed means the page leaves weather out rather than
+   guessing, because an invented forecast is the one invented fact people act
+   on. (→ sources.md)
