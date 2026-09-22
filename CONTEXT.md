@@ -10,6 +10,11 @@ digest, check it, send it, record what was sent.
 Factory (stable, every run): `_shared/{household,sources,rules,voice,digest-template}.md`
 Product (new each run): the digest itself, filed in `stages/01_weekly-digest/runs/`
 
+Not read by any run: `_shared/rundown-template.md` and `_shared/rundown-skeleton.html`.
+They are the sixth and seventh files, optional, and they describe the Weekly
+Rundown page — which you ask for in a project, by hand. The scheduled run
+composes a text and an email, and never a page. See `guides/the-weekly-rundown.md`.
+
 ## The five steps
 
 1. **Gather.** Read both calendars and the last seven days of the email label.
