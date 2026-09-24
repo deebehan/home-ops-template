@@ -26,10 +26,10 @@ CONTEXT.md, not in anyone's head.
 | running the Sunday digest | `stages/01_weekly-digest/CONTEXT.md` | you read the digest |
 | the digest got a judgment wrong | `_shared/rules.md`, encode the correction | commit |
 | the digest sounded wrong | `_shared/voice.md` | commit |
-| checking a gather without sending | `npm run gather:test` (fixture) or `gather:live` (real feeds) | read `outputs/` |
-| checking a whole digest without sending | `npm run preview` | read `outputs/` |
-| touching `tools/digest-runner/run.mjs` | `npm run gather:test` before you push. The training session must read 5:00 pm. Both gather scripts run as `TZ=UTC` because GitHub's runner does, and a timezone bug is invisible on a laptop set to your own zone | commit |
-| changing anything in `_shared/` | `npm run eval` to see whether it helped | commit |
+| checking a gather without sending | `cd tools/digest-runner`, then `npm run gather:test` (fixture) or `gather:live` (real feeds) | read `outputs/` |
+| checking a whole digest without sending | `cd tools/digest-runner`, then `npm run preview` | read `outputs/` |
+| touching `tools/digest-runner/run.mjs` | from `tools/digest-runner`, `npm run gather:test` before you push. The training session must read 5:00 pm. Both gather scripts run as `TZ=UTC` because GitHub's runner does, and a timezone bug is invisible on a laptop set to your own zone | commit |
+| changing anything in `_shared/` | from `tools/digest-runner`, `npm run eval` to see whether it helped | commit |
 | school event leaking or missing in the calendar | `tools/calendar-filter/app/api/school-cal/route.ts`, the DENY array | test locally, push |
 | your child changes year level (each January) | same DENY array, see its MAINTENANCE header | test, push |
 
