@@ -312,6 +312,8 @@ Every folder has a `CONTEXT.md` explaining itself.
 
 ## Commands
 
+Run these from `tools/digest-runner/` (that's where `package.json` lives).
+
 | Command | What it does | Costs |
 |---|---|---|
 | `npm run gather:test` | Reads the bundled fake calendar | Nothing |
