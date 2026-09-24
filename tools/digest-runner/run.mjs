@@ -11,6 +11,9 @@
 //   GMAIL_APP_PASSWORD        16-char Google app password (IMAP read + SMTP send)
 //   ANTHROPIC_API_KEY         from console.anthropic.com
 //   DIGEST_RECIPIENTS         comma-separated emails (everyone who gets the archive)
+//
+// Optional — only if you want the text message as well as the email. Leave
+// SMS_RECIPIENTS unset (all four are then unnecessary) and the run emails only:
 //   TWILIO_ACCOUNT_SID        from twilio.com console (starts AC...)
 //   TWILIO_AUTH_TOKEN         same console page
 //   TWILIO_FROM_NUMBER        your Twilio AU number, e.g. +614xxxxxxxx
@@ -58,6 +61,7 @@ const env = (k) => {
   if (!v) { console.error(`Missing secret: ${k}`); process.exit(1); }
   return v;
 };
+const envOptional = (k) => process.env[k] || undefined;
 
 // ---------- dates (Sydney day-of-week, UTC-anchored boundaries) ----------
 function sydneyParts(d) {
@@ -444,11 +448,18 @@ function spaceSmsDays(sms) {
   return out.join("\n").replace(/\n{3,}/g, "\n\n");
 }
 
+// No SMS_RECIPIENTS: texting is opt-in, so this is "email-only mode", not a
+// missing secret. Skip Twilio entirely rather than exiting the whole run.
 async function sendSms(body) {
+  const recipients = envOptional("SMS_RECIPIENTS");
+  if (!recipients) {
+    console.log("SMS: no SMS_RECIPIENTS set — skipping text, email-only mode.");
+    return;
+  }
   const sid = env("TWILIO_ACCOUNT_SID");
   const auth = Buffer.from(`${sid}:${env("TWILIO_AUTH_TOKEN")}`).toString("base64");
   const from = env("TWILIO_FROM_NUMBER");
-  for (const to of env("SMS_RECIPIENTS").split(",").map((s) => s.trim())) {
+  for (const to of recipients.split(",").map((s) => s.trim())) {
     const res = await fetch(
       `https://api.twilio.com/2010-04-01/Accounts/${sid}/Messages.json`,
       {
