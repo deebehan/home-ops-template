@@ -4,7 +4,8 @@ A Sunday briefing for your household, that sends itself.
 
 Every Sunday morning this reads your family calendar, your school calendar and
 your school email, writes the week ahead, has a second AI check it against your
-own rules, and texts it to whoever needs it. You do not open anything.
+own rules, and emails it to whoever needs it — texts it too, if you set that
+up. You do not open anything.
 
 Click **Use this template** at the top of this page to get your own copy.
 
@@ -21,7 +22,11 @@ need to write any.
 
 ## What you end up with
 
-A text, which is the thing people actually read:
+An email, every week, with the full week in it — this is the archive for when
+somebody asks what it said about Thursday.
+
+If you've set up the optional Twilio texting, also a text — the compressed
+version, the one people actually read on a phone:
 
 > Evening, all.
 >
@@ -42,9 +47,6 @@ A text, which is the thing people actually read:
 > Reminders: excursion $14 due Thursday. Free dress Friday, gold coin.
 >
 > Radar: term ends Friday week, then two weeks at home.
-
-And an email with the same week in full, which is the archive for when somebody
-asks what it said about Thursday.
 
 ---
 
@@ -246,8 +248,8 @@ ticked alongside **repo**.
 
 In the Actions tab, choose "Sunday family digest" and press **Run workflow**.
 
-> **Check:** a text arrives. If it does not, the Actions log tells you which
-> step failed and why.
+> **Check:** an email arrives (and a text too, if you set that up). If nothing
+> does, the Actions log tells you which step failed and why.
 
 After that it runs itself, late Sunday morning, until you turn it off.
 
