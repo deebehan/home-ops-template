@@ -62,7 +62,8 @@ Real numbers, per month, in US dollars, for a household texting three phones.
 | Gmail, Google Calendar | $0 |
 | **Total** | **about $20** |
 
-Two phones instead of three brings it to about $16.
+Two phones instead of three brings it to about $16. Skip texting entirely —
+email-only, no Twilio account at all — and the total drops to about $1.50.
 
 The AI is the cheapest part of this, which surprises everyone. The texts cost
 six times more than the thinking does.
@@ -99,7 +100,9 @@ in the email, which costs nothing either way.
 - A **GitHub** account. Free.
 - An **Anthropic API key**, from console.anthropic.com. Pay as you go, and the
   monthly spend is above.
-- A **Twilio** account, with one phone number in your country.
+- A **Twilio** account, with one phone number in your country. Only if you
+  want the text message — leave this out entirely for email-only and skip
+  every Twilio step below.
 - A **Gmail** account with an **app password**. Not your normal password: it is
   a 16-character code you generate specifically for this, and you can revoke it
   without changing anything else.
@@ -210,7 +213,9 @@ read yourself.
 ### 8. Add your secrets to GitHub
 
 In your repository: Settings, Secrets and variables, Actions. Add one secret
-for each name listed at the top of `tools/digest-runner/run.mjs`.
+for each name listed at the top of `tools/digest-runner/run.mjs`. The four
+Twilio/SMS ones are marked optional there — skip them for email-only, and the
+run detects their absence and sends email without texting.
 
 GitHub never shows a secret back to you after you save it. Keep your own copy
 somewhere safe, because the only way to recover one is to make a new one.
