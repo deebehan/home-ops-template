@@ -44,5 +44,5 @@ disposable.
 1. Fill in all five `_shared/` files. They are templates, not examples to keep.
 2. Set `TZ` in `tools/digest-runner/run.mjs` to your own timezone.
 3. Set the DENY array in the calendar filter to your child's year level.
-4. Run `npm run preview` and read what it produces.
+4. From `tools/digest-runner`, run `npm run preview` and read what it produces.
 5. Only then let the schedule run.
